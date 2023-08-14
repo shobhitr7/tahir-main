@@ -36,13 +36,13 @@
                         <div class="col-sm-9">
                             <div class="mb-3">
                                 <label for="product_name" class="form-label">Product Name:</label>
-                                <input type="text"  class="form-control" id="product_name" name="product_name">
-                                {{-- <select class="form-select mb-3" aria-label="Default select example" name="product_name">
+                                {{-- <input type="text"  class="form-control" id="product_name" name="product_name"> --}}
+                                <select class="form-select mb-3" aria-label="Default select example" name="product_name">
                                     <option selected="">Product Name</option>
                                     @foreach ($staff as $item)
                                         <option value="{{$item->product_name}}">{{$item->product_name}}</option>
                                     @endforeach
-                                </select> --}}
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="no_of_pieces" class="form-label">Number Of Pieces:</label>
@@ -57,9 +57,25 @@
                     <div class="row mb-3">
                     <label for="inputPrice" class="col-sm-3 col-form-label">Total Cost Price</label>
                     <div class="col-sm-9">
-                       <input type="number" class="form-control" name="cost_price" id="inputCostPrice" placeholder="Enter Amount">
+                       <input type="number" class="form-control" name="cost_price" id="inputCostPrice" placeholder="Enter Amount" readonly>
                     </div>
                 </div>
+                <script>
+                    const no_of_pieces = document.getElementById("no_of_pieces");
+                    const cost = document.getElementById("cost");
+                    const inputPrice = document.getElementById("inputCostPrice");
+
+                function updateTotal() {
+                    const noPiece = parseFloat(no_of_pieces.value);
+                    const pieceCost = parseFloat(cost.value);
+                    const total = noPiece * pieceCost;
+
+                    inputPrice.value = total.toFixed(2); // Display with 2 decimal places
+                }
+
+                    no_of_pieces.addEventListener("input", updateTotal);
+                    cost.addEventListener("input", updateTotal);
+                </script>
                 <div class="row mb-3">
                 <label for="inputPrice" class="col-sm-3 col-form-label">Total Sold Price</label>
                 <div class="col-sm-9">

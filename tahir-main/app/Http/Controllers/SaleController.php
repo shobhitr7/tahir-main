@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Models\Staff;
+use App\Models\Inventory;
 use Carbon\Carbon;
 
 class SaleController extends Controller
